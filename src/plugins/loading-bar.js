@@ -1,5 +1,6 @@
 import { isSSR } from './platform.js'
 import UAjaxBar from '../components/ajax-bar/UAjaxBar.js'
+import { mountLegacy } from '../runtime.js'
 
 export default {
   start () {},
@@ -12,12 +13,13 @@ export default {
       return
     }
 
-    const bar = $uloc.loadingBar = new Vue({
+    const vm = mountLegacy({
       render: h => h(UAjaxBar, {
         ref: 'bar',
         props: cfg.loadingBar
       })
-    }).$mount().$refs.bar
+    })
+    const bar = $uloc.loadingBar = vm.$refs.bar
 
     Object.assign(this, {
       start: bar.start,
@@ -25,6 +27,6 @@ export default {
       increment: bar.increment
     })
 
-    document.body.appendChild($uloc.loadingBar.$parent.$el)
+    document.body.appendChild(vm.$el)
   }
 }

@@ -1,6 +1,7 @@
 import UWindow from '../components/window/UWindow.js'
 import UWindowContainer from '../components/window/UWindowContainer.js'
 import uid from '../utils/uid.js'
+import { mountLegacy } from '../runtime.js'
 
 /* eslint no-unused-vars: off */
 let plugin
@@ -8,7 +9,7 @@ const instances = []
 const listeners = []
 
 function createVM (Vue, Container, wid, config, slot) {
-  return new Vue({
+  return mountLegacy({
     provide: {
       container: Container
     },
@@ -34,8 +35,8 @@ function createVM (Vue, Container, wid, config, slot) {
 }
 
 function init ({Vue}) {
-  this.container = new Vue(UWindowContainer)
-  document.body.appendChild(this.container.$mount().$el)
+  this.container = mountLegacy(UWindowContainer)
+  document.body.appendChild(this.container.$el)
 }
 
 function windowPlugin (Component, Vue, Container) {
@@ -68,7 +69,7 @@ function windowPlugin (Component, Vue, Container) {
         }
         content().then((c) => {
           const vm = createVM.call(this, Vue, Container, wid, config, c)
-          Container.$el.appendChild(vm.$mount().$el)
+          Container.$el.appendChild(vm.$el)
           instances[wid] = vm
           listeners[wid] = {}
           resolve(wid)

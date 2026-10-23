@@ -2,9 +2,9 @@
   "name": "uloc-vue",
   "version": "0.0.17",
   "description": "An Frontend Framework for Desktop Applications",
-  "module": "dist/uloc.esm.js",
-  "main": "dist/uloc.esm.js",
-  "jsnext:main": "dist/uloc.esm.js",
+  "module": "src/index.js",
+  "main": "src/index.js",
+  "jsnext:main": "src/index.js",
   "files": [
     "dist",
     "lang",
@@ -139,7 +139,7 @@
     "last 1 version, not dead, ie >= 11"
   ],
   "peerDependencies": {
-    "vue": "^2.6.0"
+    "vue": "^3.5.0"
   },
   "dependencies": {}
 }

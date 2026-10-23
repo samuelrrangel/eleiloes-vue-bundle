@@ -1,4 +1,5 @@
 import langEn from '../i18n/pt-br.js'
+import { defineReactive } from './runtime.js'
 
 export default {
   install ($uloc, queues, Vue, lang) {
@@ -15,7 +16,7 @@ export default {
         $uloc.i18n = lang
       }
       else {
-        Vue.util.defineReactive($uloc, 'i18n', lang)
+        defineReactive($uloc, 'i18n', lang)
       }
 
       this.name = lang.lang

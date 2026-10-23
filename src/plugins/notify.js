@@ -1,4 +1,5 @@
 import UAlert from '../components/alert/UAlert.js'
+import { mountLegacy } from '../runtime.js'
 import uid from '../utils/uid.js'
 import clone from '../utils/clone.js'
 
@@ -14,7 +15,7 @@ function init ({ Vue }) {
   const node = document.createElement('div')
   document.body.appendChild(node)
 
-  this.__vm = new Vue({
+  this.__vm = mountLegacy({
     name: 'UNotifications',
     data: {
       notifs: {
@@ -150,9 +151,7 @@ function init ({ Vue }) {
         }))
       }))
     }
-  })
-
-  this.__vm.$mount(node)
+  }, node)
 }
 
 export default {

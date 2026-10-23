@@ -1,4 +1,9 @@
+import * as Vue from 'vue'
 import install from './install'
+
+if (typeof Vue.configureCompat === 'function') {
+  Vue.configureCompat({ MODE: 2 })
+}
 import menu from './app/menu'
 import IconLibrary from './components/icon/IconLibrary'
 import { version } from '../package.json'

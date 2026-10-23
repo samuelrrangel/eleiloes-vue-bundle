@@ -1,4 +1,5 @@
 import './polyfills'
+import { asVueApp } from './runtime.js'
 import { version } from '../package.json'
 import Platform from './plugins/platform'
 import History from './history.js'
@@ -21,6 +22,7 @@ export default function (Vue, opts = {}) {
   if (this.installed) { return }
   this.installed = true
 
+  asVueApp(Vue)
   const cfg = opts.config || {}
 
   // required plugins

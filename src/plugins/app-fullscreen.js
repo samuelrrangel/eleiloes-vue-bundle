@@ -1,4 +1,5 @@
 import { isSSR } from './platform.js'
+import { defineReactive } from '../runtime.js'
 
 const prefixes = {}
 
@@ -61,6 +62,6 @@ export default {
       }
     })
 
-    Vue.util.defineReactive(this, 'isActive', this.isActive)
+    defineReactive(this, 'isActive', this.isActive)
   }
 }

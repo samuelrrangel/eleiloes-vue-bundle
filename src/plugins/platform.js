@@ -1,3 +1,4 @@
+import { defineReactive } from '../runtime.js'
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-mixed-operators */
@@ -233,7 +234,7 @@ export default {
         onSSR = fromSSR = false
         Object.assign(q.platform, getClientProperties())
       })
-      Vue.util.defineReactive($uloc, 'platform', this)
+      defineReactive($uloc, 'platform', this)
     }
     else {
       Object.assign(this, getClientProperties())

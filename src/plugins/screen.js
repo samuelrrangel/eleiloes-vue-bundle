@@ -1,4 +1,5 @@
 import { isSSR, fromSSR } from './platform.js'
+import { defineReactive } from '../runtime.js'
 import { listenOpts } from '../utils/event.js'
 import debounce from '../utils/debounce.js'
 
@@ -104,7 +105,7 @@ export default {
       }
     }
 
-    Vue.util.defineReactive($uloc, 'screen', this)
+    defineReactive($uloc, 'screen', this)
 
     if (fromSSR) {
       queues.takeover.push(start)

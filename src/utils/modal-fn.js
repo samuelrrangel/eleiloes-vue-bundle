@@ -1,3 +1,5 @@
+import { mountLegacy } from '../runtime.js'
+
 export default function (Component, Vue) {
   return ({ className, ...props }, resolver) => {
     return new Promise((resolve, reject) => {
@@ -14,8 +16,7 @@ export default function (Component, Vue) {
           vm.$destroy()
         }
 
-      const vm = new Vue({
-        el: node,
+      const vm = mountLegacy({
         data () {
           return { props }
         },
@@ -31,7 +32,7 @@ export default function (Component, Vue) {
         mounted () {
           this.$refs.modal.show()
         }
-      })
+      }, node)
 
       resolver && resolver.then(ok, cancel)
     })

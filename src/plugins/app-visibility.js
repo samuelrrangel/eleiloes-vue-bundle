@@ -1,4 +1,5 @@
 import { isSSR } from './platform.js'
+import { defineReactive } from '../runtime.js'
 
 export default {
   appVisible: false,
@@ -31,7 +32,7 @@ export default {
     update()
 
     if (evt && typeof document[prop] !== 'undefined') {
-      Vue.util.defineReactive($uloc, 'appVisible', this.appVisible)
+      defineReactive($uloc, 'appVisible', this.appVisible)
       document.addEventListener(evt, update, false)
     }
   }
